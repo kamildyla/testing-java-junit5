@@ -4,9 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
@@ -19,10 +21,12 @@ class IndexControllerTest {
         controller = new IndexController();
     }
 
-    @DisplayName("Test Proper Viev name is returned for index page")
+    @DisplayName("Test Proper View name is returned for index page")
     @Test
     void index() {
         assertEquals("index", controller.index(), "wrong view returned");
+
+        assertThat(controller.index()).isEqualTo("index");
     }
 
     @Test
@@ -59,5 +63,35 @@ class IndexControllerTest {
     @Test
     void testAssumptionTrueAssumptionIsTrue() {
         assumeTrue("GURU".equalsIgnoreCase("GURU"));
+    }
+
+    @EnabledOnOs(OS.MAC)
+    @Test
+    void testMeOnMacOs() {
+    }
+
+    @EnabledOnOs(OS.WINDOWS)
+    @Test
+    void testMeOnWindows() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_8)
+    @Test
+    void testMeOnJava8() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_11)
+    @Test
+    void testMeOnJava11() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "USER", matches = "Fujitsu")
+    @Test
+    void testIfUserFujitsu() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "USER", matches = "Fred")
+    @Test
+    void testIfUserFred() {
     }
 }
