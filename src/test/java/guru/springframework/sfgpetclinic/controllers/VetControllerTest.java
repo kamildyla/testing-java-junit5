@@ -44,8 +44,8 @@ class VetControllerTest implements ControllerTests {
 
         assertThat("vets/index").isEqualTo(view);
 
-        Set modelAtrribute = (Set) ((ModelMapImpl) model).getMap().get("vets");
+        Set modelAttribute = (Set) ((ModelMapImpl) model).getMap().get("vets");
 
-        assertThat(modelAtrribute.size()).isEqualTo(2);
+        assertThat(modelAttribute.size()).isEqualTo(2);
     }
 }
